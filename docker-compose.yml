@@ -1,0 +1,25 @@
+version: '2'
+services:
+  web:
+    build: .
+    command: node index.js --dspIP=nameles.simplepath.com --domainsFile=./domain-list.txt --IPsFile=./ip-list.txt --MPS=100 --test_duration=5 --verbose
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
+    expose:
+      - "58501"
+      - "58505"
+    environment:
+      - DELAY_START=40
+      - SND_PORT=58501
+      - RCV_PORT=58505
+      - DOMAINS_FILE=domain-list.txt
+      - IPS_FILE=ip-list.txt
+      - DB_IP=<database_host>
+      - DB_PORT=5430
+      - DB_USER=nameles
+      - DB_PWD=""
+      - DB_NAME=nameles
+      - DB_DAY=<day_of_input_data>
+      - MPS=1000
+      - TEST_TIME=20
